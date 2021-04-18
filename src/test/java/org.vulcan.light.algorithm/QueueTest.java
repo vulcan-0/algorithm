@@ -14,11 +14,17 @@ public class QueueTest {
         queue.offer('A');
         queue.offer('B');
         queue.offer('C');
-        System.out.println(queue.element());
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
-        System.out.println(queue.element());
-        System.out.println(queue.remove());
+        // print A
+        System.out.println(queue.peek());
+        // print A
+        System.out.println(queue.poll());
+        // print B
+        System.out.println(queue.poll());
+        // print C
+        System.out.println(queue.peek());
+        // print C
+        System.out.println(queue.peek());
+        // print 0
         System.out.println(queue.size());
     }
 

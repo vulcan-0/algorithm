@@ -13,11 +13,17 @@ public class StackTest {
         stack.push('A');
         stack.push('B');
         stack.push('C');
+        // print C
         System.out.println(stack.pop());
+        // print B
         System.out.println(stack.pop());
+        // print A
         System.out.println(stack.peek());
+        // print A
         System.out.println(stack.peek());
+        // print A
         System.out.println(stack.pop());
+        // print 0
         System.out.println(stack.size());
     }
 
