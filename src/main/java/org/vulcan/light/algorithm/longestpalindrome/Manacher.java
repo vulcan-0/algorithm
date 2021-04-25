@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.palindromic;
+package org.vulcan.light.algorithm.longestpalindrome;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 最长回文字子串 - 马拉车算法
  *
- * @author luxiaocong
+ * @author Sam Lu
  * @createdOn 2021/4/18
  */
 public class Manacher {

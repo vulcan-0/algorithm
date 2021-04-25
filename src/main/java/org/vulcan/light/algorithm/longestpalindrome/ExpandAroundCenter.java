@@ -1,9 +1,9 @@
-package org.vulcan.light.algorithm.palindromic;
+package org.vulcan.light.algorithm.longestpalindrome;
 
 /**
  * 最长回文字子串 - 中心扩展算法
  *
- * @author luxiaocong
+ * @author Sam Lu
  * @createdOn 2021/4/18
  */
 public class ExpandAroundCenter {

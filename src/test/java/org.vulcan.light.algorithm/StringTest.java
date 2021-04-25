@@ -1,7 +1,7 @@
 package org.vulcan.light.algorithm;
 
 /**
- * @author luxiaocong
+ * @author Sam Lu
  * @createdOn 2021/4/18
  */
 public class StringTest {

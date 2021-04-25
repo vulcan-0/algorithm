@@ -1,9 +1,9 @@
-package org.vulcan.light.algorithm.palindromic;
+package org.vulcan.light.algorithm.longestpalindrome;
 
 /**
  * 最长回文字子串 - 动态规划算法
  *
- * @author luxiaocong
+ * @author Sam Lu
  * @createdOn 2021/4/18
  */
 public class DynamicProgramming {
@@ -15,27 +15,21 @@ public class DynamicProgramming {
         int len = s.length();
         boolean[][] dp = new boolean[len][len];
 
-        // 只有一个字符肯定为回文串
-        for (int i = 0; i < len - 1; i++) {
-            dp[i][i] = true;
-        }
-
-        int left = 0;
-        int max = 1;
+        int left = 0, max = 1;
         char[] chars = s.toCharArray();
-        for (int l = 2; l <= len; l++) {
-            for (int i = 0; i <= len - l; i++) {
-                int j = i + l - 1;
-                if (chars[i] != chars[j]) {
-                    dp[i][j] = false;
-                } else {
+        for (int l = 1; l <= len; l++) {
+            for (int i = 0, j = l - 1; i <= len - l; i++, j = i + l - 1) {
+                if (chars[i] == chars[j]) {
                     if (l <= 2) {
+                        // 只有一个字符肯定为回文串
                         // 两个字符相同，则为回文串
                         dp[i][j] = true;
                     } else {
                         // 大于两个字符的子串，在两端字符相同时，是否是回文串，取决于子串
                         dp[i][j] = dp[i + 1][j - 1];
                     }
+                } else {
+                    dp[i][j] = false;
                 }
 
                 // 是回文串，且比之前的长

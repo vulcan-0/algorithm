@@ -3,7 +3,7 @@ package org.vulcan.light.algorithm;
 import java.util.Stack;
 
 /**
- * @author luxiaocong
+ * @author Sam Lu
  * @createdOn 2021/4/17
  */
 public class StackTest {
