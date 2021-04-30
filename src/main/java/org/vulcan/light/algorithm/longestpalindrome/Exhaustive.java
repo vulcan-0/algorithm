@@ -4,7 +4,7 @@ package org.vulcan.light.algorithm.longestpalindrome;
  * 最长回文字子串 - 枚举算法
  *
  * @author Sam Lu
- * @createdOn 2021/4/18
+ * @date 2021/4/18
  */
 public class Exhaustive {
 

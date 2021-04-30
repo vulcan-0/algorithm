@@ -7,7 +7,7 @@ import java.util.Map;
  * 最长回文字子串 - 马拉车算法
  *
  * @author Sam Lu
- * @createdOn 2021/4/18
+ * @date 2021/4/18
  */
 public class Manacher {
 

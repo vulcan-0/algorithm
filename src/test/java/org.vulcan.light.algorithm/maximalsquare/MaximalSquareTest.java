@@ -4,7 +4,7 @@ package org.vulcan.light.algorithm.maximalsquare;
  * 最大正方形几种算法的性能测试
  *
  * @author Sam Lu
- * @createdOn 2021/4/18
+ * @date 2021/4/18
  */
 public class MaximalSquareTest {
 

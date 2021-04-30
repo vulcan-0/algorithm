@@ -1,8 +1,10 @@
 package org.vulcan.light.algorithm;
 
 /**
+ * substring(beginIndex, endIndex)，第二个参数是下标，指的是截取到该下标为止，不包含该下标指向的字符
+ *
  * @author Sam Lu
- * @createdOn 2021/4/18
+ * @date 2021/4/18
  */
 public class StringTest {
 

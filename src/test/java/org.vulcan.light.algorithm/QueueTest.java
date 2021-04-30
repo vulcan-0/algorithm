@@ -4,8 +4,10 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * 队列的常用方法
+ *
  * @author Sam Lu
- * @createdOn 2021/4/17
+ * @date 2021/4/17
  */
 public class QueueTest {
 

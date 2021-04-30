@@ -7,7 +7,7 @@ import java.util.List;
  * 最大正方形 - 枚举算法
  *
  * @author Sam Lu
- * @createdOn 2021/4/18
+ * @date 2021/4/18
  */
 public class Exhaustive {
 

@@ -6,7 +6,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  * 最大回文字符串几种算法的性能测试
  *
  * @author Sam Lu
- * @createdOn 2021/4/18
+ * @date 2021/4/18
  */
 public class LongestPalindromeTest {
 
