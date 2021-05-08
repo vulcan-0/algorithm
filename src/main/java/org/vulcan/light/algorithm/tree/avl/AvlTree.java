@@ -16,245 +16,156 @@ public class AvlTree<T extends Comparable> {
     /**
      * 插入节点
      *
-     * @param value
+     * @param key
      */
-    public void insert(T value) {
-        assertNotNull(value);
-        if (root == null) {
-            root = new AvlTreeNode(null, value);
-        } else {
-            insertAvlTreeNode(root, value);
-        }
+    public void insert(T key) {
+        assertNotNull(key);
+        root = insert(root, key);
     }
 
     /**
      * 删除节点
      *
-     * @param value
+     * @param key
      */
-    public void delete(T value) {
-        assertNotNull(value);
-        deleteAvlTreeNode(root, value);
+    public void delete(T key) {
+        assertNotNull(key);
+        root = delete(root, key);
     }
 
-    private AvlTreeNode insertAvlTreeNode(AvlTreeNode node, T value) {
-        if (value.compareTo(node.value) < 0) {
-            if (node.left == null) {
-                node.left = new AvlTreeNode(node, value);
-                node.left.isLeft = true;
-                resetHeight(node);
-            } else {
-                insertAvlTreeNode(node.left, value);
+    /**
+     * 查询节点
+     *
+     * @param key
+     * @return
+     */
+    public AvlTreeNode find(T key) {
+        assertNotNull(key);
+        AvlTreeNode current = root;
+        while (current != null) {
+            if (key.equals(current.key)) {
+                return current;
             }
-        } else if (value.compareTo(node.value) > 0) {
-            if (node.right == null) {
-                node.right = new AvlTreeNode(node, value);
-                node.right.isRight = true;
-                resetHeight(node);
+            current = key.compareTo(current.key) < 0 ? current.left : current.right;
+        }
+        return null;
+    }
+
+    private AvlTreeNode insert(AvlTreeNode node, T key) {
+        if (node == null) {
+            return new AvlTreeNode(key);
+        } else if (key.compareTo(node.key) < 0) {
+            node.left = insert(node.left, key);
+        } else if (key.compareTo(node.key) > 0) {
+            node.right = insert(node.right, key);
+        } else {
+            throw new IllegalArgumentException("Duplicate Key!");
+        }
+        return reBalance(node);
+    }
+
+    private AvlTreeNode delete(AvlTreeNode node, T key) {
+        if (node == null) {
+            return null;
+        } else if (key.compareTo(node.key) < 0) {
+            node.left = delete(node.left, key);
+        } else if (key.compareTo(node.key) > 0) {
+            node.right = delete(node.right, key);
+        } else {
+            if (node.left == null || node.right == null) {
+                node = node.left != null ? node.left : node.right;
             } else {
-                insertAvlTreeNode(node.right, value);
+                AvlTreeNode mostLeftChild = mostLeftChild(node.right);
+                node.key = mostLeftChild.key;
+                node.right = delete(node.right, node.key);
             }
         }
-
-        if (!balance(node)) {
-            rotate(node);
+        if (node != null) {
+            node = reBalance(node);
         }
         return node;
     }
 
-    private AvlTreeNode deleteAvlTreeNode(AvlTreeNode node, T value) {
-        if (node == null) {
-            return null;
+    private AvlTreeNode mostLeftChild(AvlTreeNode node) {
+        while (node.left != null) {
+            node = node.left;
         }
-
-        AvlTreeNode beAffectedNode = null;
-        if (value.compareTo(node.value) < 0) {
-            beAffectedNode = deleteAvlTreeNode(node.left, value);
-        } else if (value.compareTo(node.value) > 0) {
-            beAffectedNode = deleteAvlTreeNode(node.right, value);
-        } else if (value == node.value) {
-            beAffectedNode = deleteAvlTreeNode(node);
-        }
-
-        if (beAffectedNode == null) {
-            return null;
-        }
-        if (!balance(beAffectedNode)) {
-            rotate(beAffectedNode);
-        }
-        return beAffectedNode.parent;
+        return node;
     }
 
-    private AvlTreeNode deleteAvlTreeNode(AvlTreeNode node) {
-        if (node.left == null && node.right == null) {
-            replaceAvlTreeNode(node, null);
-        } else if (node.left == null) {
-            replaceAvlTreeNode(node, node.right);
-        } else if (node.right == null) {
-            replaceAvlTreeNode(node, node.left);
-        } else {
-            AvlTreeNode minRightNode = node.right;
-            while (minRightNode.left != null) {
-                minRightNode = minRightNode.left;
-            }
-            AvlTreeNode beAffectedNode = minRightNode.parent;
-            replaceAvlTreeNode(minRightNode, null);
-            replaceAvlTreeNode(node, minRightNode);
-            resetHeight(minRightNode);
-            return beAffectedNode;
-        }
-        return node.parent;
-    }
-
-    private void replaceAvlTreeNode(AvlTreeNode current, AvlTreeNode node) {
-        if (current.isLeft) {
-            current.parent.left = node;
-        } else if (current.isRight) {
-            current.parent.right = node;
-        } else {
-            root = node;
-        }
-        if (node != null) {
-            node.isLeft = current.isLeft;
-            node.isRight = current.isRight;
-            node.parent = current.parent;
-            node.left = current.left;
-            node.right = current.right;
-        }
-        resetHeight(current.parent);
-    }
-
-    private boolean balance(AvlTreeNode node) {
-        if (node == null) {
-            return true;
-        }
-
-        return Math.abs(height(node.left) - height(node.right)) < 2;
-    }
-
-    private void rotate(AvlTreeNode node) {
-        if (height(node.left) > height(node.right)) {
+    private AvlTreeNode reBalance(AvlTreeNode node) {
+        updateHeight(node);
+        int balance = getBalance(node);
+        if (balance > 1) {
             if (height(node.left.left) > height(node.left.right)) {
-                leftLeftRotate(node, node.left);
+                node = rotateRight(node);
             } else {
-                leftRightRotate(node, node.left);
+                node.left = rotateLeft(node.left);
+                node = rotateRight(node);
             }
-        } else {
-            if (height(node.right.left) > height(node.right.right)) {
-                rightLeftRotate(node, node.right);
+        } else if (balance < -1) {
+            if (height(node.right.right) > height(node.right.left)) {
+                node = rotateLeft(node);
             } else {
-                rightRightRotate(node, node.right);
+                node.right = rotateRight(node.right);
+                node = rotateLeft(node);
             }
         }
+        return node;
+    }
+
+    private AvlTreeNode rotateRight(AvlTreeNode y) {
+        AvlTreeNode x = y.left;
+        AvlTreeNode z = x.right;
+        x.right = y;
+        y.left = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    private AvlTreeNode rotateLeft(AvlTreeNode y) {
+        AvlTreeNode x = y.right;
+        AvlTreeNode z = x.left;
+        x.left = y;
+        y.right = z;
+        updateHeight(y);
+        updateHeight(x);
+        return x;
+    }
+
+    private void assertNotNull(T key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key must not be null!");
+        }
+    }
+
+    private void updateHeight(AvlTreeNode node) {
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
     }
 
     private int height(AvlTreeNode node) {
-        if (node == null) {
-            return 0;
-        }
-        return node.height;
+        return node == null ? 0 : node.height;
     }
 
-    private void leftRightRotate(AvlTreeNode parent, AvlTreeNode left) {
-        parent.left = left.right;
-        left.right.parent = parent;
-        changeSide(left.right);
-        if (left.right.left != null) {
-            AvlTreeNode tmp = left.right.left;
-            left.right = tmp;
-            tmp.parent = left;
-            changeSide(tmp);
-        }
-        parent.left.left = left;
-        left.parent = parent.left;
-        resetHeight(left);
-        leftLeftRotate(parent, parent.left);
-    }
-
-    private void leftLeftRotate(AvlTreeNode parent, AvlTreeNode left) {
-        parent.left = left.left;
-        left.left.parent = parent;
-        if (left.left.right != null) {
-            AvlTreeNode tmp = left.left.right;
-            left.left = tmp;
-            tmp.parent = left;
-            changeSide(tmp);
-        }
-        parent.left.right = left;
-        left.parent = parent.left;
-        changeSide(left);
-        resetHeight(left);
-    }
-
-    private void rightLeftRotate(AvlTreeNode parent, AvlTreeNode right) {
-        parent.right = right.left;
-        right.left.parent = parent;
-        changeSide(right.left);
-        if (right.left.right != null) {
-            AvlTreeNode tmp = right.left.right;
-            right.left = tmp;
-            tmp.parent = right;
-            changeSide(tmp);
-        }
-        parent.right.right = right;
-        right.parent = parent.right;
-        resetHeight(right);
-        rightRightRotate(parent, parent.right);
-    }
-
-    private void rightRightRotate(AvlTreeNode parent, AvlTreeNode right) {
-        parent.right = right.right;
-        right.right.parent = parent;
-        if (right.right.left != null) {
-            AvlTreeNode tmp = right.right.left;
-            right.right = tmp;
-            tmp.parent = right;
-            changeSide(tmp);
-        }
-        parent.right.left = right;
-        right.parent = parent.right;
-        changeSide(right);
-        resetHeight(right);
-    }
-
-    private void changeSide(AvlTreeNode node) {
-        node.isLeft = !node.isLeft;
-        node.isRight = !node.isRight;
-    }
-
-    private void resetHeight(AvlTreeNode parent) {
-        while (parent != null) {
-            int oldParentHeight = parent.height;
-            parent.height = Math.max(parent.left != null ? parent.left.height : 0,
-                    parent.right != null ? parent.right.height : 0) + 1;
-            if (parent.height == oldParentHeight) {
-                break;
-            }
-            parent = parent.parent;
-        }
-    }
-
-    private void assertNotNull(T value) {
-        if (value == null) {
-            throw new IllegalArgumentException("Value must not be null!");
-        }
+    private int getBalance(AvlTreeNode node) {
+        return node == null ? 0 : height(node.left) - height(node.right);
     }
 
     public class AvlTreeNode {
 
-        private T value;
+        private T key;
         private int height;
-        private boolean isLeft;
-        private boolean isRight;
-        private AvlTreeNode parent;
         private AvlTreeNode left;
         private AvlTreeNode right;
 
-        public AvlTreeNode(AvlTreeNode parent, T value) {
-            this.parent = parent;
-            this.value = value;
+        public AvlTreeNode(T key) {
+            this.key = key;
             this.height = 1;
-            resetHeight(parent);
+        }
+
+        public T getKey() {
+            return key;
         }
 
     }
