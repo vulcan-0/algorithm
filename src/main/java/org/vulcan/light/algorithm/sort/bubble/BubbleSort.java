@@ -5,7 +5,10 @@ import org.vulcan.light.algorithm.sort.Sort;
 import java.util.Arrays;
 
 /**
- * 冒泡排序
+ * 交换排序：冒泡排序
+ * 时间复杂度：平均 - O(n²)，最坏 - O(n²)，最好 - O(n)
+ * 空间复杂度：O(1)
+ * 稳定性：稳定
  *
  * @author Sam Lu
  * @date 2021/5/8
@@ -21,9 +24,9 @@ public class BubbleSort implements Sort {
     @Override
     public int[] sort(int[] array) {
         int[] result = Arrays.copyOf(array, array.length);
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < result.length - 1; i++) {
             boolean flag = true;
-            for (int j = 0; j < result.length - 1; j++) {
+            for (int j = 0; j < result.length - 1 - i; j++) {
                 if (result[j] > result[j + 1]) {
                     int temp = result[j];
                     result[j] = result[j + 1];

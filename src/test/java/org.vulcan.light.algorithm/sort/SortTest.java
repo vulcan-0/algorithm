@@ -1,6 +1,8 @@
 package org.vulcan.light.algorithm.sort;
 
 import org.vulcan.light.algorithm.sort.bubble.BubbleSort;
+import org.vulcan.light.algorithm.sort.insertion.InsertionSort;
+import org.vulcan.light.algorithm.sort.selection.SelectionSort;
 
 /**
  * @author Sam Lu
@@ -15,6 +17,16 @@ public class SortTest {
         int[] sortedArray = bubbleSort.sort(sourceArray);
         printArray("BubbleSort source array: ", sourceArray);
         printArray("BubbleSort sorted array: ", sortedArray);
+
+        Sort selectionSort = new SelectionSort();
+        sortedArray = selectionSort.sort(sourceArray);
+        printArray("SelectionSort source array: ", sourceArray);
+        printArray("SelectionSort sorted array: ", sortedArray);
+
+        Sort insertionSort = new InsertionSort();
+        sortedArray = insertionSort.sort(sourceArray);
+        printArray("InsertionSort source array: ", sourceArray);
+        printArray("InsertionSort sorted array: ", sortedArray);
     }
 
     private static void printArray(String message, int[] array) {
