@@ -2,6 +2,7 @@ package org.vulcan.light.algorithm.sort;
 
 import org.vulcan.light.algorithm.sort.bubble.BubbleSort;
 import org.vulcan.light.algorithm.sort.insertion.InsertionSort;
+import org.vulcan.light.algorithm.sort.quick.QuickSort;
 import org.vulcan.light.algorithm.sort.selection.SelectionSort;
 import org.vulcan.light.algorithm.sort.shell.ShellSort;
 
@@ -19,10 +20,10 @@ public class SortTest {
         printArray("BubbleSort source array: ", sourceArray);
         printArray("BubbleSort sorted array: ", sortedArray);
 
-        Sort selectionSort = new SelectionSort();
-        sortedArray = selectionSort.sort(sourceArray);
-        printArray("SelectionSort source array: ", sourceArray);
-        printArray("SelectionSort sorted array: ", sortedArray);
+        Sort quickSort = new QuickSort();
+        sortedArray = quickSort.sort(sourceArray);
+        printArray("QuickSort source array: ", sourceArray);
+        printArray("QuickSort sorted array: ", sortedArray);
 
         Sort insertionSort = new InsertionSort();
         sortedArray = insertionSort.sort(sourceArray);
@@ -33,6 +34,11 @@ public class SortTest {
         sortedArray = shellSort.sort(sourceArray);
         printArray("ShellSort source array: ", sourceArray);
         printArray("ShellSort sorted array: ", sortedArray);
+
+        Sort selectionSort = new SelectionSort();
+        sortedArray = selectionSort.sort(sourceArray);
+        printArray("SelectionSort source array: ", sourceArray);
+        printArray("SelectionSort sorted array: ", sortedArray);
     }
 
     private static void printArray(String message, int[] array) {

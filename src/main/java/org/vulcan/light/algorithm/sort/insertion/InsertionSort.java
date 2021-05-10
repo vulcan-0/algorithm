@@ -4,7 +4,7 @@ import org.vulcan.light.algorithm.sort.Sort;
 
 /**
  * 插入排序：简单插入排序
- * 时间复杂度：平均 - O(n²)，最坏 - O(n²)，最好 - O(n)
+ * 时间复杂度：平均 - O(N²)，最坏 - O(N²)，最好 - O(N)
  * 空间复杂度：O(1)
  * 稳定性：稳定
  *

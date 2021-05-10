@@ -5,8 +5,8 @@ import org.vulcan.light.algorithm.sort.Sort;
 import java.util.Arrays;
 
 /**
- * 交换排序：选择排序
- * 时间复杂度：平均 - O(n²)，最坏 - O(n²)，最好 - O(n²)
+ * 选择排序：简单选择排序
+ * 时间复杂度：平均 - O(N²)，最坏 - O(N²)，最好 - O(N²)
  * 空间复杂度：O(1)
  * 稳定性：不稳定 - 交换的时候不是相邻两个数交换，存在跳跃性
  *
