@@ -3,6 +3,7 @@ package org.vulcan.light.algorithm.sort;
 import org.vulcan.light.algorithm.sort.bubble.BubbleSort;
 import org.vulcan.light.algorithm.sort.insertion.InsertionSort;
 import org.vulcan.light.algorithm.sort.selection.SelectionSort;
+import org.vulcan.light.algorithm.sort.shell.ShellSort;
 
 /**
  * @author Sam Lu
@@ -11,7 +12,7 @@ import org.vulcan.light.algorithm.sort.selection.SelectionSort;
 public class SortTest {
 
     public static void main(String[] args) {
-        int[] sourceArray = {4, -4, 6, 12, 56, 8, 12};
+        int[] sourceArray = {4, -4, 6, 12, 56, 8, 12, 1, 22, 3};
 
         Sort bubbleSort = new BubbleSort();
         int[] sortedArray = bubbleSort.sort(sourceArray);
@@ -27,6 +28,11 @@ public class SortTest {
         sortedArray = insertionSort.sort(sourceArray);
         printArray("InsertionSort source array: ", sourceArray);
         printArray("InsertionSort sorted array: ", sortedArray);
+
+        Sort shellSort = new ShellSort();
+        sortedArray = shellSort.sort(sourceArray);
+        printArray("ShellSort source array: ", sourceArray);
+        printArray("ShellSort sorted array: ", sortedArray);
     }
 
     private static void printArray(String message, int[] array) {
