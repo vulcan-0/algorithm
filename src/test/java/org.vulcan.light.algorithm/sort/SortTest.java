@@ -1,6 +1,7 @@
 package org.vulcan.light.algorithm.sort;
 
 import org.vulcan.light.algorithm.sort.bubble.BubbleSort;
+import org.vulcan.light.algorithm.sort.heap.HeapSort;
 import org.vulcan.light.algorithm.sort.insertion.InsertionSort;
 import org.vulcan.light.algorithm.sort.quick.QuickSort;
 import org.vulcan.light.algorithm.sort.selection.SelectionSort;
@@ -39,6 +40,11 @@ public class SortTest {
         sortedArray = selectionSort.sort(sourceArray);
         printArray("SelectionSort source array: ", sourceArray);
         printArray("SelectionSort sorted array: ", sortedArray);
+
+        Sort heapSort = new HeapSort();
+        sortedArray = heapSort.sort(sourceArray);
+        printArray("HeapSort source array: ", sourceArray);
+        printArray("HeapSort sorted array: ", sortedArray);
     }
 
     private static void printArray(String message, int[] array) {
