@@ -18,31 +18,33 @@ public class CountingSort implements Sort {
     @Override
     public int[] sort(int[] array) {
         int[] result = Arrays.copyOf(array, array.length);
+        return countingSort(result);
+    }
 
-        int max = result[0], min = 0;
-        for (int i = 1; i < result.length; i++) {
+    private int[] countingSort(int[] array) {
+        int max = array[0], min = 0;
+        for (int i = 1; i < array.length; i++) {
             max = array[i] > max ? array[i] : max;
             min = array[i] < min ? array[i] : min;
         }
-        int len = max - min + 1;
 
+        int len = max - min + 1;
         int[] count = new int[len];
         for (int i = 0; i < len; i++) {
             count[i] = 0;
         }
 
-        for (int i = 0; i < result.length; i++) {
-            count[result[i] - min]++;
+        for (int i = 0; i < array.length; i++) {
+            count[array[i] - min]++;
         }
 
-        for (int i = 0, j = 0; j < result.length; i++) {
+        for (int i = 0, j = 0; j < array.length; i++) {
             while (count[i] > 0) {
-                result[j++] = i + min;
+                array[j++] = i + min;
                 count[i]--;
             }
         }
-
-        return result;
+        return array;
     }
 
 }
