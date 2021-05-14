@@ -21,12 +21,8 @@ public class CountingSort implements Sort {
 
         int max = result[0], min = 0;
         for (int i = 1; i < result.length; i++) {
-            if (result[i] > max) {
-                max = result[i];
-            }
-            if (result[i] < min) {
-                min = result[i];
-            }
+            max = array[i] > max ? array[i] : max;
+            min = array[i] < min ? array[i] : min;
         }
         int len = max - min + 1;
 
