@@ -29,7 +29,7 @@ public class Printer {
         StringBuilder builder = new StringBuilder();
         ListNode current = listNode;
         while (current != null) {
-            builder.append(current.value).append(" -> ");
+            builder.append(current.val).append(" -> ");
             current = current.next;
         }
         builder.append("NULL");

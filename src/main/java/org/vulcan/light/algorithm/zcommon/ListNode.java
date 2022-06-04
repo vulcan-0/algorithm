@@ -7,10 +7,10 @@ package org.vulcan.light.algorithm.zcommon;
 public class ListNode {
 
     public ListNode next;
-    public int value;
+    public int val;
 
-    public ListNode(int value) {
-        this.value = value;
+    public ListNode(int val) {
+        this.val = val;
     }
 
     public ListNode setNext(ListNode next) {

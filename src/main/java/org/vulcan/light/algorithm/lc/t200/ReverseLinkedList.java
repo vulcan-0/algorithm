@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.lc;
+package org.vulcan.light.algorithm.lc.t200;
 
 import org.vulcan.light.algorithm.zcommon.ListNode;
 import org.vulcan.light.algorithm.zcommon.Printer;
@@ -12,6 +12,12 @@ import org.vulcan.light.algorithm.zcommon.Printer;
  */
 public class ReverseLinkedList {
 
+    /**
+     * 输入：head = [1,2,3,4,5]
+     * 输出：[5,4,3,2,1]
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         ListNode head = new ListNode(1)
                 .setNext(new ListNode(2)
@@ -20,13 +26,14 @@ public class ReverseLinkedList {
                                         .setNext(new ListNode(5)))));
         Printer.printListNode(head);
 
-        ListNode newNode1 = reverse1(head);
+        ReverseLinkedList reverseLinkedList = new ReverseLinkedList();
+        ListNode newNode1 = reverseLinkedList.reverseList1(head);
         Printer.printListNode(newNode1);
-        ListNode newNode2 = reverse2(newNode1);
+        ListNode newNode2 = reverseLinkedList.reverseList2(newNode1);
         Printer.printListNode(newNode2);
     }
 
-    private static ListNode reverse1(ListNode head) {
+    public ListNode reverseList1(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
         while (curr != null) {
@@ -38,11 +45,11 @@ public class ReverseLinkedList {
         return prev;
     }
 
-    private static ListNode reverse2(ListNode head) {
+    public ListNode reverseList2(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode newHead = reverse2(head.next);
+        ListNode newHead = reverseList2(head.next);
         head.next.next = head;
         head.next = null;
         return newHead;

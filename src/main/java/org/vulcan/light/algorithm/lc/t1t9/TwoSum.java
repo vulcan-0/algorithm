@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.lc;
+package org.vulcan.light.algorithm.lc.t1t9;
 
 import org.vulcan.light.algorithm.zcommon.Printer;
 
@@ -14,15 +14,23 @@ import java.util.Map;
  */
 public class TwoSum {
 
+    /**
+     * 输入：nums = [2,7,11,15], target = 9
+     * 输出：[0,1]
+     * 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 11, 15};
         int target = 9;
 
-        int[] result = calculate(nums, target);
+        TwoSum twoSum = new TwoSum();
+        int[] result = twoSum.twoSum(nums, target);
         Printer.printArray(result);
     }
 
-    private static int[] calculate(int[] nums, int target) {
+    public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; i++) {
             if (hashtable.containsKey(target - nums[i])) {
