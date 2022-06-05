@@ -23,6 +23,12 @@ public class LongestPalindromicSubstring {
         System.out.println(longestPalindromicSubstring.longestPalindrome(s));
     }
 
+    /**
+     * 中心扩展法
+     *
+     * @param s
+     * @return
+     */
     public String longestPalindrome(String s) {
         if (s == null || s.length() == 0) {
             return "";

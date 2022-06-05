@@ -28,6 +28,12 @@ public class LongestSubstringWithoutRepeatingCharacters {
         System.out.println(result);
     }
 
+    /**
+     * 滑动窗口
+     *
+     * @param s
+     * @return
+     */
     public int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> map = new HashMap<Character, Integer>();
         int left = 0, right = 0, max = 0;
