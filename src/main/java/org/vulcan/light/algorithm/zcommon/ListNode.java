@@ -13,6 +13,11 @@ public class ListNode {
         this.val = val;
     }
 
+    public ListNode(int val, ListNode listNode) {
+        this.val = val;
+        this.next = listNode;
+    }
+
     public ListNode setNext(ListNode next) {
         this.next = next;
         return this;

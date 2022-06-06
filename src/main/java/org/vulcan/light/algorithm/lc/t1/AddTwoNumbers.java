@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.lc.t1t9;
+package org.vulcan.light.algorithm.lc.t1;
 
 import org.vulcan.light.algorithm.zcommon.ListNode;
 import org.vulcan.light.algorithm.zcommon.Printer;

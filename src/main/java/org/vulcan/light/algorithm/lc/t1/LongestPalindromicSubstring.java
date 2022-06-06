@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.lc.t1t9;
+package org.vulcan.light.algorithm.lc.t1;
 
 /**
  * 5. 最长回文子串
