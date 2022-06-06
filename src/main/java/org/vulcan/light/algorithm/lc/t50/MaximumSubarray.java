@@ -23,6 +23,12 @@ public class MaximumSubarray {
         System.out.println(maximumSubarray.maxSubArray(nums));
     }
 
+    /**
+     * 滚动数组
+     *
+     * @param nums
+     * @return
+     */
     public int maxSubArray(int[] nums) {
         int pre = 0, maxSum = nums[0];
         for (int num : nums) {

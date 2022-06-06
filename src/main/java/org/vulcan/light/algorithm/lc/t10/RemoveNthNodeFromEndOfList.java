@@ -32,6 +32,13 @@ public class RemoveNthNodeFromEndOfList {
         Printer.printListNode(newNode);
     }
 
+    /**
+     * 双指针
+     *
+     * @param head
+     * @param n
+     * @return
+     */
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0, head);
         ListNode first = dummy, second = dummy;
