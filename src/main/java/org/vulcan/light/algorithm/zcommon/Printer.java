@@ -1,5 +1,7 @@
 package org.vulcan.light.algorithm.zcommon;
 
+import java.util.List;
+
 /**
  * @author Sam Lu
  * @date 2022/6/2
@@ -11,6 +13,10 @@ public class Printer {
             System.out.println("null");
             return;
         }
+        if (array.length == 0) {
+            System.out.println("[]");
+            return;
+        }
 
         StringBuilder builder = new StringBuilder("[");
         for (int num : array) {
@@ -19,6 +25,34 @@ public class Printer {
         builder.delete(builder.length() - 2, builder.length());
         builder.append("]");
         System.out.println(builder);
+    }
+
+    public static void printList(List<?> list) {
+        if (list == null) {
+            System.out.println("null");
+            return;
+        }
+        if (list.size() == 0) {
+            System.out.println("[]");
+            return;
+        }
+        System.out.println(buildList(list));
+    }
+
+    private static String buildList(List<?> list) {
+        StringBuilder builder = new StringBuilder("[");
+        for (Object obj : list) {
+            if (obj instanceof List) {
+                builder.append(buildList((List<?>) obj));
+            } else {
+                builder.append(obj).append(", ");
+            }
+        }
+        if (builder.toString().endsWith(", ")) {
+            builder.delete(builder.length() - 2, builder.length());
+        }
+        builder.append("]");
+        return builder.toString();
     }
 
     public static void printListNode(ListNode listNode) {
