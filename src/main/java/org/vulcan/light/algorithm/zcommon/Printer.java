@@ -1,6 +1,8 @@
 package org.vulcan.light.algorithm.zcommon;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Sam Lu
@@ -60,9 +62,10 @@ public class Printer {
             System.out.println("NULL");
         }
 
+        Set<ListNode> listNodeSet = new HashSet<>();
         StringBuilder builder = new StringBuilder();
         ListNode current = listNode;
-        while (current != null) {
+        while (current != null && listNodeSet.add(current)) {
             builder.append(current.val).append(" -> ");
             current = current.next;
         }
