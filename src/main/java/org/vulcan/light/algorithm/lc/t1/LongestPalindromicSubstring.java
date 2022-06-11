@@ -21,6 +21,7 @@ public class LongestPalindromicSubstring {
 
         LongestPalindromicSubstring longestPalindromicSubstring = new LongestPalindromicSubstring();
         System.out.println(longestPalindromicSubstring.longestPalindrome(s));
+        System.out.println(longestPalindromicSubstring.longestPalindrome2(s));
     }
 
     /**
@@ -52,6 +53,39 @@ public class LongestPalindromicSubstring {
             right++;
         }
         return right - left - 1;
+    }
+
+    /**
+     * 动态规划
+     *
+     * @param s
+     * @return
+     */
+    public String longestPalindrome2(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            dp[i][i] = true;
+        }
+        int begin = 0, maxLen = 1;
+        for (int len = 2; len <= s.length(); len++) {
+            for (int i = 0; i < s.length() - len + 1; i++) {
+                int j = i + len - 1;
+                boolean eq = s.charAt(i) == s.charAt(j);
+                if (len == 2) {
+                    dp[i][j] = eq;
+                } else {
+                    dp[i][j] = eq && dp[i + 1][j - 1];
+                }
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    begin = i;
+                    maxLen = j - i + 1;
+                }
+            }
+        }
+        return s.substring(begin, begin + maxLen);
     }
 
 }
