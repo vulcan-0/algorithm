@@ -1,0 +1,46 @@
+package org.vulcan.light.algorithm.lc.t100;
+
+/**
+ * 198. 打家劫舍
+ * https://leetcode.cn/problems/house-robber/
+ *
+ * @author Sam Lu
+ * @date 2022/06/11
+ */
+public class HouseRobber {
+
+    /**
+     * 输入：[2,1,1,2]
+     * 输出：4
+     * 解释：偷窃 1 号房屋 (金额 = 2) ，然后偷窃 4 号房屋 (金额 = 2)。
+     * 偷窃到的最高金额 = 2 + 2 = 4 。
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        int[] nums = new int[]{2, 1, 1, 2};
+
+        HouseRobber houseRobber = new HouseRobber();
+        System.out.println(houseRobber.rob(nums));
+    }
+
+    /**
+     * 滚动数组
+     *
+     * @param nums
+     * @return
+     */
+    public int rob(int[] nums) {
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int max1 = nums[0], max2 = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < nums.length; i++) {
+            int max = Math.max(max1 + nums[i], max2);
+            max1 = max2;
+            max2 = max;
+        }
+        return Math.max(max1, max2);
+    }
+
+}

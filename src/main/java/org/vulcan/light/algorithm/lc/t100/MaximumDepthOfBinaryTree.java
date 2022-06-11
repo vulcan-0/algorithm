@@ -3,7 +3,8 @@ package org.vulcan.light.algorithm.lc.t100;
 import org.vulcan.light.algorithm.zcommon.BTreePrinter;
 import org.vulcan.light.algorithm.zcommon.TreeNode;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 104. 二叉树的最大深度
@@ -43,7 +44,7 @@ public class MaximumDepthOfBinaryTree {
     }
 
     /**
-     * 深度优先
+     * 深度优先遍历
      *
      * @param root
      * @return
@@ -59,7 +60,7 @@ public class MaximumDepthOfBinaryTree {
     }
 
     /**
-     * 广度优先
+     * 广度优先遍历
      *
      * @param root
      * @return
@@ -69,17 +70,17 @@ public class MaximumDepthOfBinaryTree {
             return 0;
         }
         int maxDepth = 0;
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            int len = stack.size();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int len = queue.size();
             while (len-- > 0) {
-                TreeNode node = stack.pop();
+                TreeNode node = queue.poll();
                 if (node.left != null) {
-                    stack.push(node.left);
+                    queue.offer(node.left);
                 }
                 if (node.right != null) {
-                    stack.push(node.right);
+                    queue.offer(node.right);
                 }
             }
             maxDepth++;
