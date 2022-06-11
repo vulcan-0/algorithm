@@ -35,7 +35,7 @@ public class GenerateParentheses {
     }
 
     /**
-     * 回溯
+     * 回溯算法
      *
      * @param collection
      * @param left

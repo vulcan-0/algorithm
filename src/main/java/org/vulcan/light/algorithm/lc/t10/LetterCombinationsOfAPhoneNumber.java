@@ -51,7 +51,7 @@ public class LetterCombinationsOfAPhoneNumber {
     }
 
     /**
-     * 回溯
+     * 回溯算法
      *
      * @param combinations
      * @param letterMap
