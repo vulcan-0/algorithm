@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class Printer {
 
-    public static void printArray(int[] array) {
+    public static void printArray(int[][] array) {
         if (array == null) {
             System.out.println("null");
             return;
@@ -21,12 +21,35 @@ public class Printer {
         }
 
         StringBuilder builder = new StringBuilder("[");
+        for (int[] subArray : array) {
+            builder.append(buildArray(subArray)).append(", ");
+        }
+        builder.delete(builder.length() - 2, builder.length());
+        builder.append("]");
+        System.out.println(builder);
+    }
+
+    public static void printArray(int[] array) {
+        if (array == null) {
+            System.out.println("null");
+            return;
+        }
+        if (array.length == 0) {
+            System.out.println("[]");
+            return;
+        }
+
+        System.out.println(buildArray(array));
+    }
+
+    private static String buildArray(int[] array) {
+        StringBuilder builder = new StringBuilder("[");
         for (int num : array) {
             builder.append(num).append(", ");
         }
         builder.delete(builder.length() - 2, builder.length());
         builder.append("]");
-        System.out.println(builder);
+        return builder.toString();
     }
 
     public static void printList(List<?> list) {

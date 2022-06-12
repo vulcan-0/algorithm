@@ -33,7 +33,7 @@ public class Permutations {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> res = new ArrayList<>();
         Arrays.stream(nums).forEach(res::add);
-        backTrace(result, 0, nums.length, res, new ArrayList<>());
+        backtrace(result, 0, nums.length, res, new ArrayList<>());
         return result;
     }
 
@@ -46,13 +46,13 @@ public class Permutations {
      * @param res
      * @param list
      */
-    private void backTrace(List<List<Integer>> result, int index, int max, List<Integer> res, List<Integer> list) {
+    private void backtrace(List<List<Integer>> result, int index, int max, List<Integer> res, List<Integer> list) {
         if (index == max) {
             result.add(new ArrayList<>(list));
         } else {
             for (int i = 0; i < res.size(); i++) {
                 list.add(index, res.remove(i));
-                backTrace(result, index + 1, max, res, list);
+                backtrace(result, index + 1, max, res, list);
                 res.add(i, list.remove(index));
             }
         }

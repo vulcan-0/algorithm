@@ -46,7 +46,7 @@ public class LetterCombinationsOfAPhoneNumber {
         List<String> combinations = new ArrayList<>();
         StringBuilder combination = new StringBuilder();
         int index = 0;
-        backTrace(combinations, letterMap, digits, index, combination);
+        backtrace(combinations, letterMap, digits, index, combination);
         return combinations;
     }
 
@@ -59,14 +59,14 @@ public class LetterCombinationsOfAPhoneNumber {
      * @param index
      * @param combination
      */
-    private void backTrace(List<String> combinations, Map<Character, String> letterMap, String digits, int index, StringBuilder combination) {
+    private void backtrace(List<String> combinations, Map<Character, String> letterMap, String digits, int index, StringBuilder combination) {
         if (index == digits.length()) {
             combinations.add(combination.toString());
         } else {
             String letters = letterMap.get(digits.charAt(index));
             for (int i = 0; i < letters.length(); i++) {
                 combination.append(letters.charAt(i));
-                backTrace(combinations, letterMap, digits, index + 1, combination);
+                backtrace(combinations, letterMap, digits, index + 1, combination);
                 combination.deleteCharAt(index);
             }
         }

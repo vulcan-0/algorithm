@@ -30,7 +30,7 @@ public class GenerateParentheses {
 
     public List<String> generateParenthesis(int n) {
         List<String> collection = new ArrayList<>();
-        backTrace(collection, 0, 0, n, new StringBuilder());
+        backtrace(collection, 0, 0, n, new StringBuilder());
         return collection;
     }
 
@@ -43,19 +43,19 @@ public class GenerateParentheses {
      * @param max
      * @param builder
      */
-    private void backTrace(List<String> collection, int left, int right, int max, StringBuilder builder) {
+    private void backtrace(List<String> collection, int left, int right, int max, StringBuilder builder) {
         if (right == max) {
             collection.add(builder.toString());
             return;
         }
         if (left < max) {
             builder.append("(");
-            backTrace(collection, left + 1, right, max, builder);
+            backtrace(collection, left + 1, right, max, builder);
             builder.deleteCharAt(builder.length() - 1);
         }
         if (right < left) {
             builder.append(")");
-            backTrace(collection, left, right + 1, max, builder);
+            backtrace(collection, left, right + 1, max, builder);
             builder.deleteCharAt(builder.length() - 1);
         }
     }
