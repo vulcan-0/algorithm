@@ -38,7 +38,7 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
     }
 
     /**
-     * 二分法
+     * 二分查找
      *
      * @param nums
      * @param target
