@@ -1,6 +1,6 @@
 package org.vulcan.light.algorithm.lc.t100;
 
-import org.vulcan.light.algorithm.zcommon.BTreePrinter;
+import org.vulcan.light.algorithm.zcommon.BinaryTreePrinter;
 import org.vulcan.light.algorithm.zcommon.TreeNode;
 
 /**
@@ -32,7 +32,7 @@ public class SymmetricTree {
         node1.setRight(node4);
         node2.setLeft(node5);
         node2.setRight(node6);
-        BTreePrinter.printNode(root);
+        BinaryTreePrinter.printNode(root);
 
         SymmetricTree symmetricTree = new SymmetricTree();
         System.out.println(symmetricTree.isSymmetric(root));

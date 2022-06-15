@@ -83,6 +83,7 @@ public class Printer {
     public static void printListNode(ListNode listNode) {
         if (listNode == null) {
             System.out.println("NULL");
+            return;
         }
 
         Set<ListNode> listNodeSet = new HashSet<>();

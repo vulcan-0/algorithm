@@ -1,6 +1,6 @@
 package org.vulcan.light.algorithm.lc.t100;
 
-import org.vulcan.light.algorithm.zcommon.BTreePrinter;
+import org.vulcan.light.algorithm.zcommon.BinaryTreePrinter;
 import org.vulcan.light.algorithm.zcommon.TreeNode;
 
 import java.util.LinkedList;
@@ -36,7 +36,7 @@ public class MaximumDepthOfBinaryTree {
         TreeNode node4 = new TreeNode(7);
         node2.setLeft(node3);
         node2.setRight(node4);
-        BTreePrinter.printNode(root);
+        BinaryTreePrinter.printNode(root);
 
         MaximumDepthOfBinaryTree maximumDepthOfBinaryTree = new MaximumDepthOfBinaryTree();
         System.out.println(maximumDepthOfBinaryTree.maxDepth(root));

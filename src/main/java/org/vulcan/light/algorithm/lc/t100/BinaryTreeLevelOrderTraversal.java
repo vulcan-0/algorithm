@@ -1,6 +1,6 @@
 package org.vulcan.light.algorithm.lc.t100;
 
-import org.vulcan.light.algorithm.zcommon.BTreePrinter;
+import org.vulcan.light.algorithm.zcommon.BinaryTreePrinter;
 import org.vulcan.light.algorithm.zcommon.Printer;
 import org.vulcan.light.algorithm.zcommon.TreeNode;
 
@@ -31,7 +31,7 @@ public class BinaryTreeLevelOrderTraversal {
         TreeNode node4 = new TreeNode(7);
         node2.setLeft(node3);
         node2.setRight(node4);
-        BTreePrinter.printNode(root);
+        BinaryTreePrinter.printNode(root);
 
         BinaryTreeLevelOrderTraversal binaryTreeLevelOrderTraversal = new BinaryTreeLevelOrderTraversal();
         List<List<Integer>> result = binaryTreeLevelOrderTraversal.levelOrder(root);
