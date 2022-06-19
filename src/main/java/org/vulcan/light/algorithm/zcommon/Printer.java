@@ -68,7 +68,7 @@ public class Printer {
         StringBuilder builder = new StringBuilder("[");
         for (Object obj : list) {
             if (obj instanceof List) {
-                builder.append(buildList((List<?>) obj));
+                builder.append(buildList((List<?>) obj)).append(", ");
             } else {
                 builder.append(obj).append(", ");
             }
