@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.lc.t100;
+package org.vulcan.light.algorithm.lc.t150;
 
 /**
  * 169. 多数元素

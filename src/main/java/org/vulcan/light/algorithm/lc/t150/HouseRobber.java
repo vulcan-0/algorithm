@@ -1,4 +1,4 @@
-package org.vulcan.light.algorithm.lc.t100;
+package org.vulcan.light.algorithm.lc.t150;
 
 /**
  * 198. 打家劫舍
