@@ -27,12 +27,15 @@ public class MinimumWindowSubstring {
         String t3 = "cae";
         String s4 = "a";
         String t4 = "a";
+        String s5 = "a";
+        String t5 = "aa";
 
         MinimumWindowSubstring minimumWindowSubstring = new MinimumWindowSubstring();
         System.out.println(minimumWindowSubstring.minWindow(s, t));
         System.out.println(minimumWindowSubstring.minWindow(s2, t2));
         System.out.println(minimumWindowSubstring.minWindow(s3, t3));
         System.out.println(minimumWindowSubstring.minWindow(s4, t4));
+        System.out.println(minimumWindowSubstring.minWindow(s5, t5));
     }
 
     public String minWindow(String s, String t) {
@@ -41,35 +44,28 @@ public class MinimumWindowSubstring {
             neededMap.put(t.charAt(i), neededMap.getOrDefault(t.charAt(i), 0) + 1);
         }
         Map<Character, Integer> countMap = new HashMap<>();
-        int minLeft = 0, minRight = 0, minLen = s.length();
         int left = 0, right = 0;
-        for (int i = 0; i < s.length(); i++) {
-            Character c = s.charAt(i);
-            countMap.put(c, countMap.getOrDefault(c, 0) + 1);
-            if (i - left + 1 >= t.length()) {
-                int oldLeft = left;
+        int minLeft = 0, minRight = -1, minLen = s.length();
+        while (right < s.length()) {
+            if (neededMap.containsKey(s.charAt(right))) {
+                countMap.put(s.charAt(right), countMap.getOrDefault(s.charAt(right), 0) + 1);
+            }
+            if (right - left + 1 >= t.length()) {
                 while (hasEnough(neededMap, countMap)) {
-                    countMap.put(s.charAt(left), countMap.get(s.charAt(left)) - 1);
-                    left++;
-                }
-                if (left > oldLeft) {
-                    left--;
-                    countMap.put(s.charAt(left), countMap.get(s.charAt(left)) + 1);
-                }
-                if ((right == 0 && hasEnough(neededMap, countMap)) || left > oldLeft) {
-                    right = i + 1;
-                    if (right - left <= minLen) {
+                    if (right - left < minLen) {
                         minLeft = left;
                         minRight = right;
-                        minLen = right - left;
+                        minLen = right - left + 1;
                     }
+                    if (countMap.containsKey(s.charAt(right))) {
+                        countMap.put(s.charAt(left), countMap.getOrDefault(s.charAt(left), 0) - 1);
+                    }
+                    left++;
                 }
             }
+            right++;
         }
-        if (minRight <= minLeft) {
-            return "";
-        }
-        return s.substring(minLeft, minRight);
+        return minRight < minLeft ? "" : s.substring(minLeft, minRight + 1);
     }
 
     private boolean hasEnough(Map<Character, Integer> neededMap, Map<Character, Integer> countMap) {
