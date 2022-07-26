@@ -41,13 +41,12 @@ public class HouseRobberIII {
 
     private int[] dfs(TreeNode node) {
         if (node == null) return new int[2];
-        int[] result = new int[2];
         int[] left = dfs(node.left);
         int[] right = dfs(node.right);
-        // int[0]表示不打劫node的请求，int[1]表示打劫node的情况
-        result[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
-        result[1] = left[0] + right[0] + node.val;
-        return result;
+        // selected - 表示打劫当前node的情况，unselected - 表示不打劫当前node的情况
+        int selected = node.val + left[1] + right[1];
+        int unselected = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        return new int[]{selected, unselected};
     }
 
 }
