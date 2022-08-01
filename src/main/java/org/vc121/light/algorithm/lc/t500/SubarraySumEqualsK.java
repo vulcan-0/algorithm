@@ -1,5 +1,8 @@
 package org.vc121.light.algorithm.lc.t500;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 560. 和为 K 的子数组
  * https://leetcode.cn/problems/subarray-sum-equals-k/
@@ -26,20 +29,23 @@ public class SubarraySumEqualsK {
         System.out.println(subarraySumEqualsK.subarraySum(nums2, k2));
     }
 
+    /**
+     * 前缀和
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
     public int subarraySum(int[] nums, int k) {
-        int count = 0;
+        int count = 0, pre = 0;
+        Map<Integer, Integer> mp = new HashMap<>();
+        mp.put(0, 1);
         for (int i = 0; i < nums.length; i++) {
-            int sum = 0;
-            for (int j = i; j < nums.length; j++) {
-                sum += nums[j];
-                if (sum == k) {
-                    count++;
-                    continue;
-                }
-                if (sum > k) {
-                    continue;
-                }
+            pre += nums[i];
+            if (mp.containsKey(pre - k)) {
+                count += mp.get(pre - k);
             }
+            mp.put(pre, mp.getOrDefault(pre, 0) + 1);
         }
         return count;
     }
